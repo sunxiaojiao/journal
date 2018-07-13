@@ -1,15 +1,4 @@
-# 写一个di容器
-
-di(依赖注入)是一种管理依赖的方法，它符合SOLID原则中的D，它的作用是减轻类与类之间的耦合，同时方便了测试。
-
-现代的php框架都集成di容器做依赖管理，symfony，laravel，yii，phalcon等，还有国人熟知的thinkphp5，也已经使用了di容器。
-
-容器容器，也就是放东西的地方，放的是什么东西呢，就是一些key,value。我们可以把具体的类放进去，把抽象接口映射成具体的实现类放进去，其实也可以把一些基础数据类型放进去，这让我想起了注册器模式。
-
-从di容器中取出来的都是实例化好的对象，不管这个对象对应的类有多少的依赖，di容器统统都会帮你处理掉，但是你要事先在容器中定义过生成实例过程中需要的依赖项。
-
-接下来，我们通过写一个简答的di容器来进一步了解它。
-```php
+<?php
 namespace DI;
 
 require 'vendor/autoload.php';
@@ -104,25 +93,3 @@ class DI implements ContainerInterface
 	}
 	
 }
-```
-
-## 使用
-
-我们将controller放到容器里，这样我们便可以自动处理controller的依赖
-
-```php
-$di = new DI();
-// 注册相关类
-$di->bind(Request::class, Symfony\Component\HttpFoundation\Request::class);
-$di->bind(IndexController::class, IndexController:class);
-$controller = $di->get(IndexController::class);
-$controller->method();
-
-class IndexController 
-{
-    public __construct (Request $request) {
-        // 这里的$request已经被自动注入成Symfony\Component\HttpFoundation\Request的实例
-        $request;
-    }    
-}
-```

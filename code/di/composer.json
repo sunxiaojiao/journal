@@ -1,0 +1,22 @@
+{
+    "name": "sunxiaojiao/di",
+    "type": "library",
+    "require-dev": {
+        "phpunit/phpunit": "^6"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "sunxiaojiao",
+            "email": "sunxiaojiao001@gmail.com"
+        }
+    ],
+    "require": {
+        "psr/container": "^1.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "DI\\": ""
+        }
+    }
+}
