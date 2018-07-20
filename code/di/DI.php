@@ -63,11 +63,11 @@ class DI implements ContainerInterface
         if ($constructor && $constructor->isPublic()) {
             $params = $constructor->getParameters();
             foreach ($params as $param) {
-                $paramClass = $param->getClass();
+                $paramClass = $param->getClass() ? $param->getClass()->name : null;
                 if ($paramClass) {
-                    $this->resolveDependencies($paramClass);
+                    $resolvedDependencies[] = $this->resolve($paramClass);
                 } else {
-                    $this->resolveNonClass($param);
+                    $resolvedDependencies[] = $this->resolveNonClass($param);
                 }
             }
         } else {
