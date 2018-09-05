@@ -25,7 +25,7 @@ SELECT TRACE INTO DUMPFILE <filename> FROM  INFORMATION_SCHEMA.OPTIMIZER_TRACE;
 # 关闭trace
 SET optimizer_trace="enabled=off";
 ```
-***Note: 不要使用navicat等工具，因为这些工具会执行额外的sql，导致获取不到trace。需要直接使用mysql命令行客户端。***
+***Note: 不要使用navicat等工具，因为这些工具会执行额外的sql。建议使用mysql命令行客户端。***
 
 ## 分析trace
 以一个联合索引的例子，通过optimizer_trace查看优化器如何处理和选择合适的索引
